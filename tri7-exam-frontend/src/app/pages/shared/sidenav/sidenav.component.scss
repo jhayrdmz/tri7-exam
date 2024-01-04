@@ -1,0 +1,33 @@
+.sidenav {
+    width: 240px;
+  }
+  
+  .mat-drawer-container {
+    background-color: #eaf0f7;
+  }
+  
+  ::ng-deep {
+  
+    .menu-title {
+      color: #435177;
+    }
+  
+    .sub-menu-item {
+      padding-right: 2px;
+      
+      a {
+        height: 44px;
+        color: #91a7bb;
+        transition: all .2s ease;
+  
+        &:hover, &.active {
+          color: #2196f3;
+        }
+  
+        &:hover {
+          transform: translateX(2px);
+        }
+      }
+    }
+  
+  }

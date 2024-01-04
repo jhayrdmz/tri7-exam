@@ -1,0 +1,17 @@
+<div class="bg-white px-5 py-3 shadow-md">
+    <div class="flex items-center">
+      <div class="flex items-center" [ngClass]="{'sidenav-closed': !opened, 'hidden': hasSidenav}">
+        <button (click)="toggleSidenav()" mat-icon-button>
+            <mat-icon aria-hidden="false" fontIcon="menu"></mat-icon>
+        </button>
+      </div>
+      <div class="flex-grow"></div>
+      <button [matMenuTriggerFor]="accountMenu" mat-button>
+        <span>user</span>
+        <!-- <fa-icon [icon]="['fa', 'chevron-down']" class="ml-2"></fa-icon> -->
+      </button>
+      <mat-menu #accountMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </div>
+  </div>

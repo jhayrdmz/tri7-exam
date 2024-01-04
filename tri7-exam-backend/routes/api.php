@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
+    Route::post('auth/login', 'Auth\AuthController@login')->name('auth.login');
+
+    Route::group(['middleware' => 'auth'], function () {
+
+        Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+            Route::get('me', 'AuthController@me')->name('auth.me');
+            Route::post('logout', 'AuthController@logout')->name('auth.logout');
+        });
+
+        Route::resource('employees', 'EmployeeController')->except('create', 'edit');
+    });
 });

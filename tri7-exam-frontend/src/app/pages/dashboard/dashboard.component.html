@@ -1,0 +1,66 @@
+<app-sidenav>
+  <div sidenav></div>
+  <div content>
+    <app-topnav></app-topnav>
+    <div class="p-8">
+      <table mat-table [dataSource]="dataSource" class="w-full">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.first_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.last_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.position }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef>Created At</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.created_at }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let employee">
+            <div class="flex justify-center">
+              <a
+                [routerLink]="['/employee', employee.id]"
+                matRipple
+                class="bg-yellow-500 hover:bg-yellow-600 text-xs text-white px-2 py-1 mx-1 rounded"
+              >
+                Edit
+              </a>
+
+              <a
+                matRipple
+                class="bg-red-500 hover:bg-red-600 text-xs text-white px-2 py-1 mx-1 rounded"
+              >
+                Delete
+              </a>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="dataSource.total$ | async"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</app-sidenav>

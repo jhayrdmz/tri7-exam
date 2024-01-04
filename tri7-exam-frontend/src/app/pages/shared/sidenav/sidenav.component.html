@@ -1,0 +1,18 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav
+      [fixedInViewport]="mobileQuery.matches"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [opened]="!mobileQuery.matches"
+      [autoFocus]="false"
+      class="sidenav">
+    <div class="flex flex-col items-center pb-5">
+      <div class="my-5 text-2xl outline-none">TRI7 App</div>
+    </div>
+    <div class="pl-8">
+      <ng-content select="[sidenav]"></ng-content>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content select="[content]"></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
